@@ -10,7 +10,7 @@ body {
     min-height: 100vh;
     background:
         linear-gradient(rgba(245,255,250,0.7), rgba(245,255,250,0.7)),
-        url("assets/bg-custom.jpg") no-repeat center center fixed;
+        url("assets/bg2.jfif") no-repeat center center fixed;
     background-size: cover;
     overflow-x: hidden;
     color: #1b5e20;
@@ -136,7 +136,7 @@ button {
     width: 60%;
     max-width: 280px;
     aspect-ratio: 1/1;
-    margin: 0 auto;
+    margin: 0 auto 30px auto;
     border-radius: 50%;
     background: linear-gradient(135deg,#66bb6a,#43a047);
     box-shadow: 0 0 60px rgba(102,187,106,.7), inset 0 0 30px rgba(255,255,255,.4);
@@ -148,18 +148,27 @@ button {
     animation: pulse 2s infinite;
 }
 
+.flame {
+    font-size: 4rem; /* besarkan flame */
+    animation: flame 1s infinite alternate;
+}
+
 .streak-orb h1 {
     font-size: 2rem;
+    margin: 5px 0;
 }
 
 .streak-orb span {
+    display: block;
     opacity: .9;
-    font-size: 0.9rem;
+    font-size: 1rem;
 }
 
-.flame {
-    font-size: 3rem;
-    animation: flame 1s infinite alternate;
+.streak-orb .streak-days {
+    font-size: 0.95rem;
+    margin-top: 5px;
+    color: #e0f2f1;
+    font-weight: 600;
 }
 
 @keyframes flame {
@@ -172,7 +181,6 @@ button {
     50% {box-shadow:0 0 80px rgba(102,187,106,.9);}
     100% {box-shadow:0 0 40px rgba(102,187,106,.6);}
 }
-
 /* =================== USER CARD =================== */
 .user-card {
     margin: 30px auto;
