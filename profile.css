@@ -105,3 +105,130 @@ body{
     margin-bottom:15px;
     box-shadow:0 10px 25px rgba(0,0,0,.1);
 }
+/* 🌿 CENTER CONTAINER */
+.container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+/* 💎 GLASS CARD */
+.card {
+    background: rgba(255,255,255,0.35);
+    backdrop-filter: blur(18px);
+    padding: 50px 45px;
+    border-radius: 40px;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.15);
+    text-align: center;
+    max-width: 420px;
+    width: 90%;
+    animation: fadeUp 1s ease;
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card h1 {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.card p {
+    opacity: 0.85;
+    margin-bottom: 35px;
+}
+
+/* 🌱 BUTTONS */
+.btn {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    margin: 12px 0;
+    border-radius: 999px;
+    border: none;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #5fd3a4, #2bb673);
+    color: white;
+}
+
+.btn-primary:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 15px 30px rgba(43,182,115,0.4);
+}
+
+.btn-outline {
+    background: transparent;
+    border: 2px solid #2bb673;
+    color: #2bb673;
+}
+
+.btn-outline:hover {
+    background: rgba(43,182,115,0.15);
+    transform: translateY(-3px);
+}
+input, textarea {
+    width: 100%;
+    padding: 14px;
+    margin: 10px 0;
+    border-radius: 18px;
+    border: none;
+    outline: none;
+    font-size: 15px;
+}
+.dashboard-btn {
+    position: fixed;
+    top: 22px;
+    left: 22px;
+    z-index: 1000;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 12px 22px;
+    border-radius: 999px;
+
+    background: linear-gradient(135deg, #b7f7c1, #74e6a3);
+    color: #145a32;
+
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration: none;
+
+    box-shadow:
+        0 10px 22px rgba(0, 0, 0, 0.15),
+        inset 0 2px 6px rgba(255, 255, 255, 0.6);
+
+    transition: all 0.3s ease;
+}
+
+.dashboard-btn:hover {
+    transform: translateY(-4px) scale(1.04);
+    box-shadow:
+        0 16px 30px rgba(0, 0, 0, 0.22),
+        inset 0 2px 8px rgba(255, 255, 255, 0.8);
+}
+
+.dash-icon {
+    font-size: 16px;
+}
+
+.dash-text {
+    letter-spacing: 0.5px;
+}
