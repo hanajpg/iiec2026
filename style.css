@@ -446,3 +446,56 @@ body {
 
     font-family: 'Poppins', sans-serif;
 }
+body{
+    font-family: 'Comic Sans MS', 'Poppins', cursive;
+    background: linear-gradient(120deg,#e8f5e9,#c8e6c9);
+}
+
+.profile-container{
+    max-width: 900px;
+    margin: auto;
+    padding: 30px;
+}
+
+.streak-card{
+    background: #e0f2f1;
+    border-radius: 30px;
+    padding: 40px;
+    text-align: center;
+    box-shadow: 0 15px 40px rgba(0,0,0,.15);
+    animation: pop 0.6s ease;
+}
+
+.fire{
+    font-size: 80px;
+    animation: flame 1s infinite alternate;
+}
+
+@keyframes flame{
+    from{transform: scale(1);}
+    to{transform: scale(1.1);}
+}
+
+.profile-card, .history-card{
+    background: white;
+    margin-top: 30px;
+    padding: 25px;
+    border-radius: 25px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.1);
+}
+
+table{
+    width:100%;
+    border-collapse: collapse;
+}
+
+th,td{
+    padding: 10px;
+    text-align: center;
+}
+
+th{
+    background:#a5d6a7;
+    border-radius: 10px;
+}
+
