@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700&display=swap');
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:'Baloo 2', cursive;
+    min-height:100vh;
+    background: linear-gradient(135deg,#e8f5e9,#c8e6c9);
+}
+
+/* BACK TO DASHBOARD */
+.back-dashboard{
+    position:fixed;
+    top:20px;
+    left:20px;
+    padding:12px 22px;
+    background:rgba(255,255,255,.75);
+    border-radius:50px;
+    text-decoration:none;
+    color:#2e7d32;
+    font-weight:600;
+    box-shadow:0 10px 25px rgba(0,0,0,.2);
+    backdrop-filter:blur(10px);
+    transition:.3s;
+}
+.back-dashboard:hover{
+    transform:translateY(-4px);
+}
+
+/* PAGE */
+.profile-page{
+    max-width:900px;
+    margin:100px auto;
+    text-align:center;
+    padding:20px;
+}
+
+/* STREAK ORB */
+.streak-orb{
+    width:260px;
+    height:260px;
+    margin:0 auto;
+    border-radius:50%;
+    background:linear-gradient(135deg,#66bb6a,#43a047);
+    box-shadow:
+        0 0 60px rgba(102,187,106,.8),
+        inset 0 0 30px rgba(255,255,255,.4);
+    color:white;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    animation:pulse 2s infinite;
+}
+
+.streak-orb .fire{
+    font-size:70px;
+    animation:flame 1s infinite alternate;
+}
+
+.streak-orb h1{
+    font-size:50px;
+    margin:0;
+}
+
+@keyframes flame{
+    from{transform:scale(1);}
+    to{transform:scale(1.15);}
+}
+
+@keyframes pulse{
+    0%{box-shadow:0 0 40px rgba(102,187,106,.6);}
+    50%{box-shadow:0 0 80px rgba(102,187,106,1);}
+    100%{box-shadow:0 0 40px rgba(102,187,106,.6);}
+}
+
+/* PROFILE CARD */
+.profile-card{
+    margin:40px auto;
+    padding:30px;
+    background:rgba(255,255,255,.75);
+    border-radius:30px;
+    backdrop-filter:blur(12px);
+    box-shadow:0 20px 40px rgba(0,0,0,.15);
+}
+
+/* RECORD */
+.record-card{
+    margin-top:40px;
+    padding:30px;
+    background:rgba(255,255,255,.7);
+    border-radius:35px;
+    backdrop-filter:blur(12px);
+}
+
+.record-item{
+    display:flex;
+    justify-content:space-between;
+    background:white;
+    padding:18px 22px;
+    border-radius:25px;
+    margin-bottom:15px;
+    box-shadow:0 10px 25px rgba(0,0,0,.1);
+}

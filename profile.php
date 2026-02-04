@@ -25,7 +25,7 @@ $sessions = mysqli_query($conn,
 <html>
 <head>
 <title>Profile</title>
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="profile.css">
 </head>
 <body>
 
