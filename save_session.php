@@ -13,16 +13,15 @@ elseif($action == 'stop'){
     $user_id = $_SESSION['user_id'];
     $title = $_POST['title'] ?? '';
     $subject = $_POST['subject'] ?? '';
-    $duration = $_POST['duration'] ?? '0h 0m';
+    $duration = intval($_POST['duration'] ?? 0); // in seconds
 
-    // Escape strings untuk selamat
+    // Escape strings
     $title = mysqli_real_escape_string($conn, $title);
     $subject = mysqli_real_escape_string($conn, $subject);
-    $duration = mysqli_real_escape_string($conn, $duration);
 
-    // Simpan ke database
+    // Save to database
     $query = "INSERT INTO study_session(user_id, title, subject, duration)
-              VALUES($user_id, '$title', '$subject', '$duration')";
+              VALUES($user_id, '$title', '$subject', $duration)";
 
     if(mysqli_query($conn, $query)){
         unset($_SESSION['session_start']); // clear timer
@@ -38,4 +37,3 @@ elseif($action == 'stop'){
     }
 }
 ?>
-

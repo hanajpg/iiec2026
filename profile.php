@@ -9,17 +9,24 @@ if(!isset($_SESSION['user_id'])){
 
 $uid = $_SESSION['user_id'];
 
+// Total study time in seconds
 $time = mysqli_fetch_assoc(mysqli_query($conn,
 "SELECT SUM(duration) AS total FROM study_session WHERE user_id=$uid"));
 
+// User info
 $user = mysqli_fetch_assoc(mysqli_query($conn,
 "SELECT username, nickname, bio FROM users WHERE id=$uid"));
 
+// Study sessions
 $sessions = mysqli_query($conn,
 "SELECT subject, title, duration, session_date 
  FROM study_session 
  WHERE user_id=$uid 
  ORDER BY session_date DESC");
+
+$total_sec = $time['total'] ?? 0;
+$total_hours = floor($total_sec / 3600);
+$total_minutes = floor(($total_sec % 3600) / 60);
 ?>
 <!DOCTYPE html>
 <html>
@@ -29,36 +36,36 @@ $sessions = mysqli_query($conn,
 </head>
 <body>
 
-<!-- FLOATING DASHBOARD BUTTON -->
 <a href="dashboard.php" class="dash-float">🏠 Dashboard</a>
 
 <div class="profile-page">
 
-    <!-- FIRE STREAK CENTER -->
     <div class="streak-orb">
         <div class="flame">🔥</div>
-        <h1><?= round($time['total']/60) ?></h1>
-        <span>minutes studied</span>
+        <h1><?= $total_hours ?>h <?= $total_minutes ?>m</h1>
+        <span>Total Study Time</span>
     </div>
 
-    <!-- USER CARD -->
     <div class="user-card">
         <h2><?= $user['nickname'] ?: $user['username'] ?></h2>
         <p><?= $user['bio'] ?: "Trying to stay consistent every day 🌱" ?></p>
     </div>
 
-    <!-- RECORD CARD -->
     <div class="record-card">
         <h3>Study History</h3>
 
-        <?php while($row=mysqli_fetch_assoc($sessions)){ ?>
+        <?php while($row = mysqli_fetch_assoc($sessions)){ 
+            $sec = $row['duration'] ?? 0;
+            $h = floor($sec/3600);
+            $m = floor(($sec%3600)/60);
+        ?>
         <div class="record-item">
             <div>
                 <b><?= $row['subject'] ?></b>
                 <small><?= $row['title'] ?></small>
             </div>
             <div class="record-right">
-                <span><?= round($row['duration']/60) ?> min</span>
+                <span><?= $h ?>h <?= $m ?>m</span>
                 <small><?= $row['session_date'] ?></small>
             </div>
         </div>
@@ -70,5 +77,3 @@ $sessions = mysqli_query($conn,
 
 </body>
 </html>
-
-

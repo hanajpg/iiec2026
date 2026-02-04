@@ -9,10 +9,7 @@ if(!isset($_SESSION['user_id'])) exit();
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<a href="dashboard.php" class="dashboard-btn">
-    <span class="dash-icon">🏠</span>
-    <span class="dash-text">Dashboard</span>
-</a>
+<a href="dashboard.php" class="dash-float">🏠 Dashboard</a>
 
 <div class="container">
 <div class="card">
@@ -45,7 +42,7 @@ function start(){
     if(!running){
         running = true;
 
-        // Simpan start timestamp di server
+        // Save start timestamp to server
         fetch("save_session.php", {
             method: "POST",
             headers: {'Content-Type':'application/x-www-form-urlencoded'},
@@ -69,9 +66,6 @@ function stop(){
     .then(res => res.json())
     .then(data => {
         let sec = data.elapsed;
-        let hours = Math.floor(sec / 3600);
-        let minutes = Math.floor((sec % 3600) / 60);
-        let duration = `${hours}h ${minutes}m`;
 
         let titleVal = encodeURIComponent(document.getElementById("title").value);
         let subjectVal = encodeURIComponent(document.getElementById("subject").value);
@@ -79,11 +73,10 @@ function stop(){
         fetch("save_session.php", {
             method: "POST",
             headers: {'Content-Type':'application/x-www-form-urlencoded'},
-            body: `action=stop&title=${titleVal}&subject=${subjectVal}&duration=${duration}`
+            body: `action=stop&title=${titleVal}&subject=${subjectVal}&duration=${sec}`
         })
         .then(res => res.text())
         .then(html => {
-            // Jalankan script alert & redirect dari PHP
             document.open();
             document.write(html);
             document.close();
