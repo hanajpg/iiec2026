@@ -45,7 +45,7 @@ function start(){
     if(!running){
         running = true;
 
-        // Inform server that session started
+        // Simpan start timestamp di server
         fetch("save_session.php", {
             method: "POST",
             headers: {'Content-Type':'application/x-www-form-urlencoded'},
@@ -55,9 +55,7 @@ function start(){
         timer = setInterval(()=>{
             fetch("get_elapsed.php")
             .then(res => res.json())
-            .then(data => {
-                updateTimerDisplay(data.elapsed);
-            });
+            .then(data => updateTimerDisplay(data.elapsed));
         }, 1000);
     }
 }
@@ -67,7 +65,6 @@ function stop(){
     running = false;
     clearInterval(timer);
 
-    // Get final elapsed from server
     fetch("get_elapsed.php")
     .then(res => res.json())
     .then(data => {
@@ -76,14 +73,20 @@ function stop(){
         let minutes = Math.floor((sec % 3600) / 60);
         let duration = `${hours}h ${minutes}m`;
 
+        let titleVal = encodeURIComponent(document.getElementById("title").value);
+        let subjectVal = encodeURIComponent(document.getElementById("subject").value);
+
         fetch("save_session.php", {
             method: "POST",
             headers: {'Content-Type':'application/x-www-form-urlencoded'},
-            body: `title=${encodeURIComponent(title.value)}&subject=${encodeURIComponent(subject.value)}&duration=${duration}&action=stop`
+            body: `action=stop&title=${titleVal}&subject=${subjectVal}&duration=${duration}`
         })
-        .then(()=> {
-            // Redirect to dashboard after saving
-            window.location.href = "dashboard.php";
+        .then(res => res.text())
+        .then(html => {
+            // Jalankan script alert & redirect dari PHP
+            document.open();
+            document.write(html);
+            document.close();
         });
     });
 }
