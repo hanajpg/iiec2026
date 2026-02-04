@@ -232,3 +232,21 @@ input, textarea {
 .dash-text {
     letter-spacing: 0.5px;
 }
+.dash-float{
+    position:fixed;
+    top:20px;
+    left:20px;
+    padding:12px 22px;
+    background:rgba(255,255,255,.75);
+    border-radius:50px;
+    text-decoration:none;
+    color:#2e7d32;
+    font-weight:600;
+    box-shadow:0 10px 25px rgba(0,0,0,.2);
+    backdrop-filter:blur(10px);
+    transition:.3s;
+}
+.dash-float:hover{
+    transform:scale(1.05);
+    background:#e8f5e9;
+}
