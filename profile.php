@@ -9,15 +9,12 @@ if(!isset($_SESSION['user_id'])){
 
 $uid = $_SESSION['user_id'];
 
-// total study time
 $time = mysqli_fetch_assoc(mysqli_query($conn,
 "SELECT SUM(duration) AS total FROM study_session WHERE user_id=$uid"));
 
-// ambil profile user
 $user = mysqli_fetch_assoc(mysqli_query($conn,
 "SELECT username, nickname, bio FROM users WHERE id=$uid"));
 
-// ambil rekod study
 $sessions = mysqli_query($conn,
 "SELECT subject, title, duration, session_date 
  FROM study_session 
@@ -32,49 +29,46 @@ $sessions = mysqli_query($conn,
 </head>
 <body>
 
-<a href="dashboard.php" class="dashboard-btn">🏠 Dashboard</a>
+<!-- FLOATING DASHBOARD BUTTON -->
+<a href="dashboard.php" class="dash-float">🏠 Dashboard</a>
 
-<div class="profile-container">
+<div class="profile-page">
 
-    <!-- 🔥 STREAK / TOTAL STUDY -->
-    <div class="streak-card">
-        <div class="fire">🔥</div>
-        <h2><?= round($time['total']/60) ?> minutes studied</h2>
-        <p>Keep the streak alive 🌱</p>
+    <!-- FIRE STREAK CENTER -->
+    <div class="streak-orb">
+        <div class="flame">🔥</div>
+        <h1><?= round($time['total']/60) ?></h1>
+        <span>minutes studied</span>
     </div>
 
-    <!-- 👤 PROFILE INFO -->
-    <div class="profile-card">
-        <h3><?= $user['nickname'] ?: $user['username'] ?></h3>
-        <p class="bio"><?= $user['bio'] ?: "No bio yet 🌿" ?></p>
+    <!-- USER CARD -->
+    <div class="user-card">
+        <h2><?= $user['nickname'] ?: $user['username'] ?></h2>
+        <p><?= $user['bio'] ?: "Trying to stay consistent every day 🌱" ?></p>
     </div>
 
-    <!-- 📚 STUDY HISTORY -->
-    <div class="history-card">
-        <h3>Study Records</h3>
+    <!-- RECORD CARD -->
+    <div class="record-card">
+        <h3>Study History</h3>
 
-        <table>
-            <tr>
-                <th>Date</th>
-                <th>Subject</th>
-                <th>Note</th>
-                <th>Duration</th>
-            </tr>
+        <?php while($row=mysqli_fetch_assoc($sessions)){ ?>
+        <div class="record-item">
+            <div>
+                <b><?= $row['subject'] ?></b>
+                <small><?= $row['title'] ?></small>
+            </div>
+            <div class="record-right">
+                <span><?= round($row['duration']/60) ?> min</span>
+                <small><?= $row['session_date'] ?></small>
+            </div>
+        </div>
+        <?php } ?>
 
-            <?php while($row = mysqli_fetch_assoc($sessions)){ ?>
-            <tr>
-                <td><?= $row['session_date'] ?></td>
-                <td><?= $row['subject'] ?></td>
-                <td><?= $row['title'] ?></td>
-                <td><?= round($row['duration']/60) ?> min</td>
-            </tr>
-            <?php } ?>
-
-        </table>
     </div>
 
 </div>
 
 </body>
 </html>
+
 

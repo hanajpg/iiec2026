@@ -498,4 +498,142 @@ th{
     background:#a5d6a7;
     border-radius: 10px;
 }
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600&display=swap');
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:'Baloo 2', cursive;
+    background:
+        radial-gradient(circle at top,#c8e6c9,#a5d6a7,#81c784);
+    min-height:100vh;
+}
+
+/* FLOAT DASHBOARD */
+.dash-float{
+    position:fixed;
+    top:20px;
+    left:20px;
+    padding:12px 22px;
+    background:rgba(255,255,255,.75);
+    border-radius:50px;
+    text-decoration:none;
+    color:#2e7d32;
+    font-weight:600;
+    box-shadow:0 10px 25px rgba(0,0,0,.2);
+    backdrop-filter:blur(10px);
+    transition:.3s;
+}
+.dash-float:hover{
+    transform:scale(1.05);
+    background:#e8f5e9;
+}
+
+/* PAGE */
+.profile-page{
+    max-width:850px;
+    margin:100px auto;
+    padding:20px;
+    text-align:center;
+}
+
+/* STREAK ORB */
+.streak-orb{
+    width:280px;
+    height:280px;
+    margin:0 auto;
+    border-radius:50%;
+    background:linear-gradient(135deg,#66bb6a,#43a047);
+    box-shadow:
+        0 0 60px rgba(102,187,106,.7),
+        inset 0 0 30px rgba(255,255,255,.4);
+    color:white;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    animation:pulse 2s infinite;
+}
+
+.flame{
+    font-size:70px;
+    animation:flame 1s infinite alternate;
+}
+
+.streak-orb h1{
+    font-size:52px;
+    margin:0;
+}
+
+.streak-orb span{
+    opacity:.9;
+}
+
+@keyframes flame{
+    from{transform:scale(1);}
+    to{transform:scale(1.15);}
+}
+
+@keyframes pulse{
+    0%{box-shadow:0 0 40px rgba(102,187,106,.6);}
+    50%{box-shadow:0 0 80px rgba(102,187,106,.9);}
+    100%{box-shadow:0 0 40px rgba(102,187,106,.6);}
+}
+
+/* USER CARD */
+.user-card{
+    margin:40px auto;
+    padding:30px;
+    background:rgba(255,255,255,.7);
+    border-radius:30px;
+    backdrop-filter:blur(15px);
+    box-shadow:0 20px 40px rgba(0,0,0,.15);
+}
+
+.user-card h2{
+    color:#1b5e20;
+}
+
+/* RECORD */
+.record-card{
+    margin-top:40px;
+    padding:30px;
+    background:rgba(255,255,255,.65);
+    border-radius:35px;
+    backdrop-filter:blur(12px);
+}
+
+.record-card h3{
+    text-align:left;
+    margin-bottom:20px;
+    color:#2e7d32;
+}
+
+.record-item{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:white;
+    padding:18px 22px;
+    border-radius:25px;
+    margin-bottom:15px;
+    box-shadow:0 10px 25px rgba(0,0,0,.1);
+    transition:.3s;
+}
+.record-item:hover{
+    transform:translateY(-4px);
+}
+
+.record-item small{
+    display:block;
+    color:#777;
+}
+
+.record-right{
+    text-align:right;
+    color:#388e3c;
+}
 
