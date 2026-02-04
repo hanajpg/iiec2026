@@ -1,12 +1,21 @@
 <?php
 session_start();
-include("db.php");
 
-$user_id = $_SESSION['user_id'];
-$title = $_POST['title'];
-$subject = $_POST['subject'];
-$duration = $_POST['duration'];
+if($_SERVER['REQUEST_METHOD'] == 'POST'){
+    $action = $_POST['action'] ?? '';
 
-mysqli_query($conn,"INSERT INTO study_session(user_id,title,subject,duration)
-VALUES($user_id,'$title','$subject',$duration)");
+    if($action == 'start'){
+        $_SESSION['session_start'] = time();
+    } 
+    elseif($action == 'stop'){
+        $title = $_POST['title'] ?? 'No title';
+        $subject = $_POST['subject'] ?? 'No subject';
+        $duration = $_POST['duration'] ?? '0h 0m';
+
+        // Simpan ke database
+        // contoh: saveSession($title, $subject, $duration);
+
+        unset($_SESSION['session_start']); // clear session
+    }
+}
 ?>
